@@ -1,39 +1,94 @@
-    <div class="masthead">
-        <h3 class="muted">Sistema Unabus</h3>
-            <h4> Bienvenido/a <?php echo $nombre ?> <?php echo $apellido ?></h4>
-    Su perfil es: <?php
-					switch($tipo_usuario){
-						case 1:	
-							echo "Administrador";
-							break;
-						case 2:	
-							echo "Vendedor";
-							break;
-						case 3:	
-							echo "Chofer";
-							break;
-						case 4:	
-							echo "Auxiliar";
-							break;
-						case 5:	
-							echo "Pasajero";
-							break;
-						default:	
-							echo "Sin Información";
-							break;	
-					}?>
-           <br />              
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="container">
-              <ul class="nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="<?php echo base_url() ?>buses">Buses</a></li>
-                <li><a href="<?php echo base_url() ?>recorridos">Recorridos</a></li>
-                <li><a href="<?php echo base_url() ?>usuarios">Usuarios</a></li>
-                <li><a href="<?php echo base_url() ?>ingresos/cerrar_sesion">Cerrar</a></li>
-              </ul>
-            </div>
-          </div>
-        </div><!-- /.navbar -->
-      </div>
+       <h3 class="muted">Sistema Unabus</h3>  
+       <div class="masthead">        
+           <h4> Bienvenido/a <?php echo $nombre ?> <?php echo $apellido ?></h4>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h4>Perfil <?php echo $descripcion;?></h4>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                  <div class="row">
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <i class="fa fa-users fa-5x"></i>
+                                                    </div>
+                                                    <div class="col-xs-9 text-right">
+                                                        <div class="huge">Usuarios</div>
+                                                        <div>Gestión de Usuarios</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="#">
+                                                <div class="panel-footer">
+                                                    <span class="pull-left"><a href="<?php echo base_url() ?>usuarios">Ingresar</a></span>
+                                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="panel panel-yellow">
+                                            <div class="panel-heading">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <i class="fa fa-globe fa-5x"></i>
+                                                    </div>
+                                                    <div class="col-xs-9 text-right">
+                                                        <div class="huge">Recorridos</div>
+                                                        <div>Gestión de Recorridos</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="#">
+                                                <div class="panel-footer">
+                                                    <span class="pull-left"><a href="<?php echo base_url() ?>recorridos">Ingresar</a></span>
+                                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="panel panel-red">
+                                            <div class="panel-heading">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <i class="fa fa-truck fa-5x"></i>
+                                                    </div>
+                                                    <div class="col-xs-9 text-right">
+                                                        <div class="huge">Buses</div>
+                                                        <div>Gestión de Buses</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="#">
+                                                <div class="panel-footer">
+                                                    <span class="pull-left"><a href="<?php echo base_url() ?>buses">Ingresar</a></span>
+                                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                              <!--------------------- -->  
+                            </p>
+                        </div>
+                        <div class="panel-footer">
+                            <h4><a href="<?php echo base_url() ?>ingresos/cerrar_sesion">Salir del Sistema</a></h4>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+       

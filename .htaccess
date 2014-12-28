@@ -1,6 +1,6 @@
-﻿    RewriteEngine On
+﻿   RewriteEngine On
     RewriteBase /
-	RewriteCond $1 !^(index\.php|application\/public|robots\.txt)
+    RewriteCond $1 !^(index\.php|application\/public|css|fonts|font-awesome|less|js|robots\.txt)
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ /index.php?/$1 [L]
