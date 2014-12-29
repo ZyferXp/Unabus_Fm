@@ -29,7 +29,7 @@ class Buses extends CI_Controller {
       $this->load->model('bus_model');
       if($patente){
          $bus = $this->bus_model->obtener_por_id($patente); 
-         $data['patente'] = $bus->patente;
+         $data['patente'] = strtoupper($bus->patente);
          $data['capacidad'] = $bus->capacidad;
       }else{
          $data['patente'] = null;
@@ -41,7 +41,7 @@ class Buses extends CI_Controller {
    }
    public function guardar_post($patente=null){
       if($this->input->post()){
-         $patente = $this->input->post('patente');
+         $patente = strtoupper($this->input->post('patente'));
          $capacidad = $this->input->post('capacidad');
          $this->load->model('bus_model');
          $this->bus_model->guardar($capacidad, $patente);

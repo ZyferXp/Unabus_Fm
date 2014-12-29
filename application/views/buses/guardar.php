@@ -12,7 +12,7 @@
                      </div>
                      <div class="form-group">
                         <label class="control-label">Capacidad</label>
-                        <input class="form-control" type="number" min="46" max="49" name="capacidad" required="required" value="<?php echo $capacidad; ?>" />
+                        <input class="form-control" type="number" min="42" max="46" name="capacidad" required="required" value="<?php echo $capacidad; ?>" />
                      </div>
                      <div class="form-group">
                         <input type="submit" class="btn btn-success" value="Guardar" />
