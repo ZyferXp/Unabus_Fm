@@ -2,7 +2,7 @@
 <p> <a class="btn btn-success" href="<?php echo base_url() ?>recorridos/guardar"> Agregar Recorridos al Sistema </a> </p>
 
 <div class="col-lg-12">
-    <div class="panel panel-yellow">
+    <div class="panel panel-warning">
         <div class="panel-heading">
             Recorridos Registrados en el sistema
         </div>

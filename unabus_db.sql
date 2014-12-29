@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-12-2014 a las 21:07:33
+-- Tiempo de generación: 29-12-2014 a las 04:24:26
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -37,7 +37,6 @@ CREATE TABLE IF NOT EXISTS `tb_buses` (
 --
 
 INSERT INTO `tb_buses` (`patente`, `capacidad`) VALUES
-('dan123', 47),
 ('DC1973', 49),
 ('DC1978', 47),
 ('fm3024', 46),
@@ -74,6 +73,11 @@ INSERT INTO `tb_intermedios` (`id_recorrido`, `id_comuna`) VALUES
 (36, 2104),
 (36, 2201),
 (36, 15202),
+(37, 8402),
+(37, 13504),
+(37, 13505),
+(37, 13604),
+(37, 13605),
 (38, 1101),
 (38, 1401),
 (38, 1403),
@@ -81,8 +85,9 @@ INSERT INTO `tb_intermedios` (`id_recorrido`, `id_comuna`) VALUES
 (38, 2102),
 (38, 15101),
 (38, 15201),
-(39, 5103),
-(39, 5105),
+(39, 1402),
+(39, 1405),
+(39, 15202),
 (40, 5103),
 (40, 5105),
 (40, 5109),
@@ -91,7 +96,16 @@ INSERT INTO `tb_intermedios` (`id_recorrido`, `id_comuna`) VALUES
 (42, 1401),
 (42, 1402),
 (42, 1403),
-(42, 1404);
+(42, 1404),
+(43, 15202),
+(44, 1107),
+(44, 15202),
+(45, 5604),
+(45, 5605),
+(45, 5606),
+(45, 5701),
+(45, 15102),
+(45, 15201);
 
 -- --------------------------------------------------------
 
@@ -106,20 +120,19 @@ CREATE TABLE IF NOT EXISTS `tb_recorridos` (
   `duracion` varchar(8) NOT NULL,
   `valor` int(11) NOT NULL,
   PRIMARY KEY (`id_recorrido`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabla con losrecorridos' AUTO_INCREMENT=43 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabla con losrecorridos' AUTO_INCREMENT=46 ;
 
 --
 -- Volcado de datos para la tabla `tb_recorridos`
 --
 
 INSERT INTO `tb_recorridos` (`id_recorrido`, `id_origen`, `id_destino`, `duracion`, `valor`) VALUES
-(36, 15101, 15101, '10:30', 12000),
 (37, 15101, 1404, '10:30', 35000),
 (38, 15101, 2201, '1:30', 10000),
-(39, 13101, 5107, '2:50', 10000),
-(40, 13101, 5107, '2:50', 10000),
-(41, 15101, 15201, '1:10', 1000),
-(42, 15101, 15201, '1:10', 1000);
+(39, 13101, 5105, '2:50', 15000),
+(42, 15101, 15201, '1:10', 1000),
+(44, 15101, 2302, '1:20', 11111),
+(45, 8109, 10105, '10:02', 15400);
 
 -- --------------------------------------------------------
 
@@ -497,19 +510,23 @@ INSERT INTO `tb_territorios` (`id_region`, `nombre_region`, `id_provincia`, `nom
 CREATE TABLE IF NOT EXISTS `tb_tipo_usuarios` (
   `id_tipo_usuario` int(2) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(36) NOT NULL,
+  `descuento` int(2) DEFAULT NULL,
   PRIMARY KEY (`id_tipo_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Volcado de datos para la tabla `tb_tipo_usuarios`
 --
 
-INSERT INTO `tb_tipo_usuarios` (`id_tipo_usuario`, `descripcion`) VALUES
-(1, 'Administrador'),
-(2, 'Vendedor'),
-(3, 'Chofer'),
-(4, 'Auxiliar'),
-(5, 'Pasajero');
+INSERT INTO `tb_tipo_usuarios` (`id_tipo_usuario`, `descripcion`, `descuento`) VALUES
+(1, 'Administrador', NULL),
+(2, 'Vendedor', NULL),
+(3, 'Chofer', NULL),
+(4, 'Auxiliar', NULL),
+(5, 'Pasajero', 0),
+(6, 'Pasajero Frecuente', 20),
+(7, 'Pasajero Trabajador', 40),
+(8, 'Pasajero Estudiante', 60);
 
 -- --------------------------------------------------------
 
@@ -525,7 +542,7 @@ CREATE TABLE IF NOT EXISTS `tb_usuarios` (
   `contrasena` varchar(50) NOT NULL,
   `tipo_usuario` int(1) NOT NULL,
   PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Volcado de datos para la tabla `tb_usuarios`
@@ -533,12 +550,34 @@ CREATE TABLE IF NOT EXISTS `tb_usuarios` (
 
 INSERT INTO `tb_usuarios` (`id_usuario`, `rut`, `nombre`, `apellido`, `contrasena`, `tipo_usuario`) VALUES
 (1, '13473660-7', 'Fernando', 'Momberg', 'macmac', 1),
-(2, '12312312-1', 'Dario', 'Canales', 'dario', 2),
-(4, '23213211-1', 'mac', 'Donals', 'macmac', 3),
+(4, '23213211-1', 'Mac', 'Donals', 'macmac', 4),
 (6, '15967508-4', 'Caro', 'Rios', 'gato', 2),
-(7, '159195-2', 'Chamelfo', 'elfo', '123213', 4),
 (8, '123456-2', 'Cris', 'Mormay', '12345', 3),
-(9, '5564', 'Cam', 'Elo', '1231', 5);
+(10, '156245-5', 'Dario', 'Canales', 'dar12', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tb_viajes`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_viajes` (
+  `codigo_servicio` varchar(6) NOT NULL,
+  `fechahora_salida` datetime NOT NULL,
+  `fechahora_llegada` datetime NOT NULL,
+  `patente` varchar(6) NOT NULL,
+  `id_recorrido` int(11) NOT NULL,
+  `id_chofer_principal` int(11) NOT NULL,
+  `id_chofer_secundario` int(11) DEFAULT NULL,
+  `id_auxiliar` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tb_viajes`
+--
+
+INSERT INTO `tb_viajes` (`codigo_servicio`, `fechahora_salida`, `fechahora_llegada`, `patente`, `id_recorrido`, `id_chofer_principal`, `id_chofer_secundario`, `id_auxiliar`) VALUES
+('SAM210', '2015-01-01 09:00:00', '2015-01-02 04:00:00', 'XF7262', 37, 8, 10, 4);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -2,7 +2,7 @@
 <p> <a class="btn btn-success" href="<?php echo base_url() ?>usuarios/guardar"> Agregar Usuario al Sistema </a> </p>
 
 <div class="col-lg-12">
-    <div class="panel panel-primary">
+    <div class="panel panel-info">
         <div class="panel-heading">
             Usuarios Registrados en el sistema
         </div>
